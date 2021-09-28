@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>(3주차) 9월28일 | 빅데이터분석 (전북대학교 2021년 2학기)</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="(3주차) 9월28일" />
+<meta name="author" content="최규빈" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="파이토치를 이용하여 회귀모형 학습하기 (2)" />
+<meta property="og:description" content="파이토치를 이용하여 회귀모형 학습하기 (2)" />
+<link rel="canonical" href="https://guebin.github.io/2021BDA/2021/09/28/(3%EC%A3%BC%EC%B0%A8)-9%EC%9B%9428%EC%9D%BC.html" />
+<meta property="og:url" content="https://guebin.github.io/2021BDA/2021/09/28/(3%EC%A3%BC%EC%B0%A8)-9%EC%9B%9428%EC%9D%BC.html" />
+<meta property="og:site_name" content="빅데이터분석 (전북대학교 2021년 2학기)" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-28T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"파이토치를 이용하여 회귀모형 학습하기 (2)","url":"https://guebin.github.io/2021BDA/2021/09/28/(3%EC%A3%BC%EC%B0%A8)-9%EC%9B%9428%EC%9D%BC.html","@type":"BlogPosting","headline":"(3주차) 9월28일","dateModified":"2021-09-28T00:00:00-05:00","datePublished":"2021-09-28T00:00:00-05:00","author":{"@type":"Person","name":"최규빈"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://guebin.github.io/2021BDA/2021/09/28/(3%EC%A3%BC%EC%B0%A8)-9%EC%9B%9428%EC%9D%BC.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/2021BDA/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://guebin.github.io/2021BDA/feed.xml" title="빅데이터분석 (전북대학교 2021년 2학기)" /><link rel="shortcut icon" type="image/x-icon" href="/2021BDA/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/2021BDA/">빅데이터분석 (전북대학교 2021년 2학기)</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/2021BDA/about/">About Me</a><a class="page-link" href="/2021BDA/search/">Search</a><a class="page-link" href="/2021BDA/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">(3주차) 9월28일</h1><p class="page-description">파이토치를 이용하여 회귀모형 학습하기 (2)</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-28T00:00:00-05:00" itemprop="datePublished">
+        Sep 28, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">최규빈</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/guebin/2021BDA/tree/master/_notebooks/2021-09-28-(3주차) 9월28일.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/2021BDA/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/guebin/2021BDA/master?filepath=_notebooks%2F2021-09-28-%283%EC%A3%BC%EC%B0%A8%29+9%EC%9B%9428%EC%9D%BC.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/2021BDA/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/guebin/2021BDA/blob/master/_notebooks/2021-09-28-(3주차) 9월28일.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/2021BDA/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h3"><a href="#강의영상">강의영상 </a></li>
+<li class="toc-entry toc-h3"><a href="#Import">Import </a></li>
+<li class="toc-entry toc-h3"><a href="#Data">Data </a></li>
+<li class="toc-entry toc-h3"><a href="#이전방법요약">이전방법요약 </a></li>
+<li class="toc-entry toc-h3"><a href="#step1:-yhat">step1: yhat </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#방법1:-직접선언-(내가-공식을-알고-있어야-한다)">방법1: 직접선언 (내가 공식을 알고 있어야 한다) </a></li>
+<li class="toc-entry toc-h4"><a href="#방법2:-torch.nn.Linear()-사용">방법2: torch.nn.Linear() 사용 </a></li>
+<li class="toc-entry toc-h4"><a href="#방법3:-torch.nn.Linear()사용,-bias=True">방법3: torch.nn.Linear()사용, bias=True </a></li>
+<li class="toc-entry toc-h4"><a href="#-">  </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#step2:-loss">step2: loss </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#방법1:-손실함수를-직접정의하는-방법">방법1: 손실함수를 직접정의하는 방법 </a></li>
+<li class="toc-entry toc-h4"><a href="#방법2:-torch.nn.MSELoss()를-사용하여-손실함수를-정의하는-방법">방법2: torch.nn.MSELoss()를 사용하여 손실함수를 정의하는 방법 </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#숙제">숙제 </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-09-28-(3주차) 9월28일.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="강의영상">
+<a class="anchor" href="#%EA%B0%95%EC%9D%98%EC%98%81%EC%83%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>강의영상<a class="anchor-link" href="#%EA%B0%95%EC%9D%98%EC%98%81%EC%83%81"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 유튜브 업로드 지연으로 9월30일정도에 업로드될 예정입니다. 죄송합니다...</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Import">
+<a class="anchor" href="#Import" aria-hidden="true"><span class="octicon octicon-link"></span></a>Import<a class="anchor-link" href="#Import"> </a>
+</h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data">
+<a class="anchor" href="#Data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data<a class="anchor-link" href="#Data"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> model: $y_i= w_0+w_1 x_i +\epsilon_i = 2.5 + 4x_i +\epsilon_i, \quad i=1,2,\dots,n$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> model: ${\bf y}={\bf X}{\bf W} +\boldsymbol{\epsilon}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>${\bf y}=\begin{bmatrix} y_1 \\ y_2 \\ \dots \\ y_n\end{bmatrix}, \quad {\bf X}=\begin{bmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \dots \\ 1 &amp; x_n\end{bmatrix}, \quad {\bf W}=\begin{bmatrix} 2.5 \\ 4 \end{bmatrix}, \quad \boldsymbol{\epsilon}= \begin{bmatrix} \epsilon_1 \\ \dots \\ \epsilon_n\end{bmatrix}$</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">43052</span><span class="p">)</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">ones</span><span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">ones</span><span class="p">,</span><span class="n">x</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">ϵ</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="nd">@W</span> <span class="o">+</span> <span class="n">ϵ</span>
+<span class="n">ytrue</span> <span class="o">=</span> <span class="n">X</span><span class="nd">@W</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="이전방법요약">
+<a class="anchor" href="#%EC%9D%B4%EC%A0%84%EB%B0%A9%EB%B2%95%EC%9A%94%EC%95%BD" aria-hidden="true"><span class="octicon octicon-link"></span></a>이전방법요약<a class="anchor-link" href="#%EC%9D%B4%EC%A0%84%EB%B0%A9%EB%B2%95%EC%9A%94%EC%95%BD"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> step1: yhat</p>
+<p><code>-</code> step2: loss</p>
+<p><code>-</code> step3: derivation</p>
+<p><code>-</code> step4: update</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="step1:-yhat">
+<a class="anchor" href="#step1:-yhat" aria-hidden="true"><span class="octicon octicon-link"></span></a>step1: yhat<a class="anchor-link" href="#step1:-yhat"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> feedforward 신경망을 설계하는 과정</p>
+<p><code>-</code> 이 단계가 잘 완료되었다면, 임의의 ${\bf\hat{W}}$을 넣었을 때 $\bf\hat{y}$를 계산할 수 있어야 함</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="방법1:-직접선언-(내가-공식을-알고-있어야-한다)">
+<a class="anchor" href="#%EB%B0%A9%EB%B2%951:-%EC%A7%81%EC%A0%91%EC%84%A0%EC%96%B8-(%EB%82%B4%EA%B0%80-%EA%B3%B5%EC%8B%9D%EC%9D%84-%EC%95%8C%EA%B3%A0-%EC%9E%88%EC%96%B4%EC%95%BC-%ED%95%9C%EB%8B%A4)" aria-hidden="true"><span class="octicon octicon-link"></span></a>방법1: 직접선언 (내가 공식을 알고 있어야 한다)<a class="anchor-link" href="#%EB%B0%A9%EB%B2%951:-%EC%A7%81%EC%A0%91%EC%84%A0%EC%96%B8-(%EB%82%B4%EA%B0%80-%EA%B3%B5%EC%8B%9D%EC%9D%84-%EC%95%8C%EA%B3%A0-%EC%9E%88%EC%96%B4%EC%95%BC-%ED%95%9C%EB%8B%A4)"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">What</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">],</span><span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">yhat1</span><span class="o">=</span><span class="n">X</span><span class="nd">@What</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">yhat1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([-29.8211, -28.6215, -24.9730, -21.2394, -19.7919, -19.6354, -19.5093,
+        -19.4352, -18.7223, -18.0793, -16.9040, -16.0918, -16.0536, -15.8746,
+        -14.4690, -14.3193, -13.6426, -12.8578, -12.5486, -12.4213, -11.9484,
+        -11.1034, -10.8296, -10.6210, -10.5064, -10.0578,  -9.8063,  -9.7380,
+         -9.7097,  -9.6756,  -8.8736,  -8.7195,  -8.6880,  -8.1592,  -7.7752,
+         -7.7716,  -7.7339,  -7.7208,  -7.6677,  -7.1551,  -7.0004,  -6.8163,
+         -6.7081,  -6.5655,  -6.4480,  -6.3612,  -6.0566,  -5.6031,  -5.5589,
+         -5.2137,  -4.3446,  -4.3165,  -3.8047,  -3.5801,  -3.4793,  -3.4325,
+         -2.3545,  -2.3440,  -1.8434,  -1.7799,  -1.5386,  -1.0161,  -0.8103,
+          0.4426,   0.5794,   0.9125,   1.1483,   1.4687,   1.4690,   1.5234,
+          1.6738,   2.0592,   2.1414,   2.8221,   3.1536,   3.6682,   4.2907,
+          4.8037,   4.8531,   4.9414,   5.3757,   5.3926,   5.6973,   6.0239,
+          6.1261,   6.5317,   7.2891,   8.4032,   8.4936,   9.2794,   9.9943,
+         10.0310,  10.4369,  11.7886,  15.8323,  17.4440,  18.9350,  21.0560,
+         21.0566,  21.6324], grad_fn=&lt;MvBackward&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="방법2:-torch.nn.Linear()-사용">
+<a class="anchor" href="#%EB%B0%A9%EB%B2%952:-torch.nn.Linear()-%EC%82%AC%EC%9A%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>방법2: torch.nn.Linear() 사용<a class="anchor-link" href="#%EB%B0%A9%EB%B2%952:-torch.nn.Linear()-%EC%82%AC%EC%9A%A9"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">2</span> <span class="p">,</span><span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[ 0.4210, -0.3843]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[-5., 10.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[-29.8211],
+        [-28.6215],
+        [-24.9730],
+        [-21.2394],
+        [-19.7919],
+        [-19.6354],
+        [-19.5093],
+        [-19.4352],
+        [-18.7223],
+        [-18.0793],
+        [-16.9040],
+        [-16.0918],
+        [-16.0536],
+        [-15.8746],
+        [-14.4690],
+        [-14.3193],
+        [-13.6426],
+        [-12.8578],
+        [-12.5486],
+        [-12.4213],
+        [-11.9484],
+        [-11.1034],
+        [-10.8296],
+        [-10.6210],
+        [-10.5064],
+        [-10.0578],
+        [ -9.8063],
+        [ -9.7380],
+        [ -9.7097],
+        [ -9.6756],
+        [ -8.8736],
+        [ -8.7195],
+        [ -8.6880],
+        [ -8.1592],
+        [ -7.7752],
+        [ -7.7716],
+        [ -7.7339],
+        [ -7.7208],
+        [ -7.6677],
+        [ -7.1551],
+        [ -7.0004],
+        [ -6.8163],
+        [ -6.7081],
+        [ -6.5655],
+        [ -6.4480],
+        [ -6.3612],
+        [ -6.0566],
+        [ -5.6031],
+        [ -5.5589],
+        [ -5.2137],
+        [ -4.3446],
+        [ -4.3165],
+        [ -3.8047],
+        [ -3.5801],
+        [ -3.4793],
+        [ -3.4325],
+        [ -2.3545],
+        [ -2.3440],
+        [ -1.8434],
+        [ -1.7799],
+        [ -1.5386],
+        [ -1.0161],
+        [ -0.8103],
+        [  0.4426],
+        [  0.5794],
+        [  0.9125],
+        [  1.1483],
+        [  1.4687],
+        [  1.4690],
+        [  1.5234],
+        [  1.6738],
+        [  2.0592],
+        [  2.1414],
+        [  2.8221],
+        [  3.1536],
+        [  3.6682],
+        [  4.2907],
+        [  4.8037],
+        [  4.8531],
+        [  4.9414],
+        [  5.3757],
+        [  5.3926],
+        [  5.6973],
+        [  6.0239],
+        [  6.1261],
+        [  6.5317],
+        [  7.2891],
+        [  8.4032],
+        [  8.4936],
+        [  9.2794],
+        [  9.9943],
+        [ 10.0310],
+        [ 10.4369],
+        [ 11.7886],
+        [ 15.8323],
+        [ 17.4440],
+        [ 18.9350],
+        [ 21.0560],
+        [ 21.0566],
+        [ 21.6324]], grad_fn=&lt;MmBackward&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">yhat2</span><span class="o">=</span><span class="n">net</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="방법3:-torch.nn.Linear()사용,-bias=True">
+<a class="anchor" href="#%EB%B0%A9%EB%B2%953:-torch.nn.Linear()%EC%82%AC%EC%9A%A9,-bias=True" aria-hidden="true"><span class="octicon octicon-link"></span></a>방법3: torch.nn.Linear()사용, bias=True<a class="anchor-link" href="#%EB%B0%A9%EB%B2%953:-torch.nn.Linear()%EC%82%AC%EC%9A%A9,-bias=True"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">1</span> <span class="p">,</span><span class="n">out_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[-0.1737]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">10.0</span><span class="p">]])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="o">-</span><span class="mf">5.0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span><span class="n">net</span><span class="o">.</span><span class="n">bias</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(Parameter containing:
+ tensor([[10.]], requires_grad=True),
+ Parameter containing:
+ tensor([-5.], requires_grad=True))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">net</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[-29.8211],
+        [-28.6215],
+        [-24.9730],
+        [-21.2394],
+        [-19.7919],
+        [-19.6354],
+        [-19.5093],
+        [-19.4352],
+        [-18.7223],
+        [-18.0793],
+        [-16.9040],
+        [-16.0918],
+        [-16.0536],
+        [-15.8746],
+        [-14.4690],
+        [-14.3193],
+        [-13.6426],
+        [-12.8578],
+        [-12.5486],
+        [-12.4213],
+        [-11.9484],
+        [-11.1034],
+        [-10.8296],
+        [-10.6210],
+        [-10.5064],
+        [-10.0578],
+        [ -9.8063],
+        [ -9.7380],
+        [ -9.7097],
+        [ -9.6756],
+        [ -8.8736],
+        [ -8.7195],
+        [ -8.6880],
+        [ -8.1592],
+        [ -7.7752],
+        [ -7.7716],
+        [ -7.7339],
+        [ -7.7208],
+        [ -7.6677],
+        [ -7.1551],
+        [ -7.0004],
+        [ -6.8163],
+        [ -6.7081],
+        [ -6.5655],
+        [ -6.4480],
+        [ -6.3612],
+        [ -6.0566],
+        [ -5.6031],
+        [ -5.5589],
+        [ -5.2137],
+        [ -4.3446],
+        [ -4.3165],
+        [ -3.8047],
+        [ -3.5801],
+        [ -3.4793],
+        [ -3.4325],
+        [ -2.3545],
+        [ -2.3440],
+        [ -1.8434],
+        [ -1.7799],
+        [ -1.5386],
+        [ -1.0161],
+        [ -0.8103],
+        [  0.4426],
+        [  0.5794],
+        [  0.9125],
+        [  1.1483],
+        [  1.4687],
+        [  1.4690],
+        [  1.5234],
+        [  1.6738],
+        [  2.0592],
+        [  2.1414],
+        [  2.8221],
+        [  3.1536],
+        [  3.6682],
+        [  4.2907],
+        [  4.8037],
+        [  4.8531],
+        [  4.9414],
+        [  5.3757],
+        [  5.3926],
+        [  5.6973],
+        [  6.0239],
+        [  6.1261],
+        [  6.5317],
+        [  7.2891],
+        [  8.4032],
+        [  8.4936],
+        [  9.2794],
+        [  9.9943],
+        [ 10.0310],
+        [ 10.4369],
+        [ 11.7886],
+        [ 15.8323],
+        [ 17.4440],
+        [ 18.9350],
+        [ 21.0560],
+        [ 21.0566],
+        [ 21.6324]], grad_fn=&lt;AddmmBackward&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="-">
+<a class="anchor" href="#-" aria-hidden="true"><span class="octicon octicon-link"></span></a> <a class="anchor-link" href="#-"> </a>
+</h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="step2:-loss">
+<a class="anchor" href="#step2:-loss" aria-hidden="true"><span class="octicon octicon-link"></span></a>step2: loss<a class="anchor-link" href="#step2:-loss"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="방법1:-손실함수를-직접정의하는-방법">
+<a class="anchor" href="#%EB%B0%A9%EB%B2%951:-%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98%EB%A5%BC-%EC%A7%81%EC%A0%91%EC%A0%95%EC%9D%98%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>방법1: 손실함수를 직접정의하는 방법<a class="anchor-link" href="#%EB%B0%A9%EB%B2%951:-%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98%EB%A5%BC-%EC%A7%81%EC%A0%91%EC%A0%95%EC%9D%98%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loss</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">yhat1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">loss</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(85.8769, grad_fn=&lt;MeanBackward0&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loss</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">yhat2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">loss</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(176.2661, grad_fn=&lt;MeanBackward0&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>176.2661? 이건 잘못된 결과임</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loss</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">yhat2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">loss</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(85.8769, grad_fn=&lt;MeanBackward0&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="방법2:-torch.nn.MSELoss()를-사용하여-손실함수를-정의하는-방법">
+<a class="anchor" href="#%EB%B0%A9%EB%B2%952:-torch.nn.MSELoss()%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98%EB%A5%BC-%EC%A0%95%EC%9D%98%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>방법2: torch.nn.MSELoss()를 사용하여 손실함수를 정의하는 방법<a class="anchor-link" href="#%EB%B0%A9%EB%B2%952:-torch.nn.MSELoss()%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%86%90%EC%8B%A4%ED%95%A8%EC%88%98%EB%A5%BC-%EC%A0%95%EC%9D%98%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95"> </a>
+</h4>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lossfn</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loss</span><span class="o">=</span><span class="n">lossfn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">yhat1</span><span class="p">)</span>
+<span class="n">loss</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(85.8769, grad_fn=&lt;MseLossBackward&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loss</span><span class="o">=</span><span class="n">lossfn</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">yhat2</span><span class="p">)</span>
+<span class="n">loss</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(85.8769, grad_fn=&lt;MseLossBackward&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="숙제">
+<a class="anchor" href="#%EC%88%99%EC%A0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://ieilms.jbnu.ac.kr/">숙제</a><a class="anchor-link" href="#%EC%88%99%EC%A0%9C"> </a>
+</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> model: $y_i= w_0+w_1 x_{i1}+w_2 x_{i2} +\epsilon_i = 2.5 + 4x_{1i} + -2x_{2i}+\epsilon_i, \quad i=1,2,\dots,n$</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">43052</span><span class="p">)</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">ones</span><span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">x1</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">x2</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">ones</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ϵ</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="mf">0.5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="nd">@W</span> <span class="o">+</span> <span class="n">ϵ</span>
+<span class="n">ytrue</span> <span class="o">=</span> <span class="n">X</span><span class="nd">@W</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> torch.nn.Linear() 를 이용하여 $\bf{\hat{W}}=\begin{bmatrix}1 \\ 1 \\ 1 \end{bmatrix}$ 에 대한 $\hat{y}$를 구하라.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="guebin/2021BDA"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/2021BDA/2021/09/28/(3%EC%A3%BC%EC%B0%A8)-9%EC%9B%9428%EC%9D%BC.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/2021BDA/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/2021BDA/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/2021BDA/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/guebin" title="guebin"><svg class="svg-icon grey"><use xlink:href="/2021BDA/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
