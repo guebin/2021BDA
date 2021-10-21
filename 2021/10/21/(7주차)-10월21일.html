@@ -133,8 +133,12 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#data">data </a></li>
 <li class="toc-entry toc-h3"><a href="#기존의-MLP-모형">기존의 MLP 모형 </a></li>
 <li class="toc-entry toc-h3"><a href="#선형변환-대신에-2d-convolution-with-windowsize=5">선형변환 대신에 2d convolution with windowsize=5 </a></li>
-<li class="toc-entry toc-h3"><a href="#ReLU()-대신-MaxPool2d-+-ReLU">ReLU() 대신 MaxPool2d + ReLU </a></li>
-<li class="toc-entry toc-h3"><a href="#ReLU">ReLU </a></li>
+<li class="toc-entry toc-h3"><a href="#ReLU()-대신-MaxPool2d-+-ReLU">ReLU() 대신 MaxPool2d + ReLU </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#MaxPool2d">MaxPool2d </a></li>
+<li class="toc-entry toc-h4"><a href="#ReLU">ReLU </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h3"><a href="#여기에서-그냥-시그모이드에-태우자.">여기에서 그냥 시그모이드에 태우자. </a></li>
 <li class="toc-entry toc-h3"><a href="#networks-설계">networks 설계 </a></li>
 <li class="toc-entry toc-h3"><a href="#숙제">숙제 </a></li>
@@ -1238,6 +1242,15 @@ window.onload = wrap_img;
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="MaxPool2d">
+<a class="anchor" href="#MaxPool2d" aria-hidden="true"><span class="octicon octicon-link"></span></a>MaxPool2d<a class="anchor-link" href="#MaxPool2d"> </a>
+</h4>
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1334,9 +1347,9 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="ReLU">
+<h4 id="ReLU">
 <a class="anchor" href="#ReLU" aria-hidden="true"><span class="octicon octicon-link"></span></a>ReLU<a class="anchor-link" href="#ReLU"> </a>
-</h3>
+</h4>
 </div>
 </div>
 </div>
