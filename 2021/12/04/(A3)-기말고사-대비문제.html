@@ -94,7 +94,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      4 min read
+      5 min read
     
 </span></p>
 
@@ -206,6 +206,87 @@ $$loss={\bf v}^\top {\bf v}$$
 <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 <span class="n">W</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">data</span>
 </pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 손실함수는 아래와 같은 변환들을 거쳐서 계산되었다고 볼 수 있다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>${\bf X} \to {\bf X}{\bf W} \to {\bf y}-{\bf X}{\bf W} \to ({\bf y}-{\bf X}{\bf W})^\top({\bf y}-{\bf X}{\bf W}) $</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 이 과정을 좀 더 세분화 하여 나타내면 아래와 같다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p>$\bf u = X\color{red}{W}$, $\quad {\bf u}: n \times 1 $</p>
+</li>
+<li><p>$\bf v = y - \color{red}{u}$, $\quad {\bf v}: n \times 1 $</p>
+</li>
+<li><p>$loss= \bf \color{red}{v}^\top \color{red}{v} $</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 손실함수에 대한 미분은 아래와 같다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>
+$$\frac{\partial}{\partial \bf W}loss = \frac{\partial}{\partial \bf W} \bf v^\top v$$
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(그런데 이걸 어떻게 계산함?)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>-</code> 계산할 수 있는것들의 모음..</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p>$\frac{\partial }{\partial \bf v} loss = 2{\bf v}$  $\quad \to$ (n,1) 벡터</p>
+</li>
+<li><p>$\frac{\partial}{\partial \bf u} {\bf v}^\top = - {\bf I}$ $\quad \to$ (n,n) 매트릭스</p>
+</li>
+<li><p>$\frac{\partial}{\partial \bf W} {\bf u}^\top = {\bf X}^\top$ $\quad \to$ (p,n) 매트릭스</p>
+</li>
+</ul>
 
 </div>
 </div>
