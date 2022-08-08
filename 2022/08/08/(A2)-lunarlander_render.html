@@ -196,8 +196,9 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#display = Display(visible=0, size=(1400, 900))</span>
-<span class="c1">#display.start()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyvirtualdisplay</span> <span class="kn">import</span> <span class="n">Display</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">Display</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1400</span><span class="p">,</span> <span class="mi">900</span><span class="p">))</span>
+<span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -224,7 +225,7 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
-<span class="c1">#from gym.wrappers import Monitor</span>
+<span class="kn">from</span> <span class="nn">gym.wrappers</span> <span class="kn">import</span> <span class="n">Monitor</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
@@ -520,8 +521,7 @@ Number of actions:  4
 
         <span class="c1">## Compute and minimize the loss</span>
         <span class="c1">### Extract next maximum estimated value from target network</span>
-        <span class="c1">#q_targets_next = self.qnetwork_target(next_states).detach().max(1)[0].unsqueeze(1)</span>
-        <span class="n">q_targets_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnetwork_local</span><span class="p">(</span><span class="n">next_states</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">q_targets_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">qnetwork_target</span><span class="p">(</span><span class="n">next_states</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">q_targets</span> <span class="o">=</span> <span class="n">rewards</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">q_targets_next</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">dones</span><span class="p">)</span>
 
         <span class="c1">### Calculate expected value from local network</span>
